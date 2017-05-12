@@ -40,36 +40,54 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    const filmApi = 'http://www.swapi.co/api/films';
+    const filmApi = 'http://swapi.co/api/films/';
     fetch(filmApi)
       .then((resp) => resp.json())
       .then((films) => {
+        console.log('setting the crawl state is firing');
         this.setCrawlState(films)
       })
       .catch((error) => {
-        alert('film api busted')
+        console.log('film api busted')
       })
 
-    const peopleApi = 'http://www.swapi.co/api/people';
-    fetch(peopleApi)
+      const peopleApi = 'http://swapi.co/api/people/';
+      fetch(peopleApi)
       .then(resp => resp.json())
       .then((people) => {
         this.setPeopleState(people)
       })
+      .catch((error) => {
+        console.log('people api busted')
+      })
 
-    const planetApi = 'http://www.swapi.co/api/planets';
+    // fetch('http://swapi.co/api/people/')
+    //   .then(resp => resp.json())
+    //   .then(people => {
+    //     this.setState({people: peopleCleaner(people)})
+    //   }).catch((error) => {
+    //       console.log('people api busted')
+    //     })
+
+
+    const planetApi = 'http://swapi.co/api/planets/';
     fetch(planetApi)
       .then((resp) => resp.json())
       .then((planets) => {
         this.setPlanetState(planets)
       })
+      .catch((error) => {
+        console.log('planet api busted')
+      })
 
-    const vehicleApi = 'http://www.swapi.co/api/vehicles';
+    const vehicleApi = 'http://swapi.co/api/vehicles/';
     fetch(vehicleApi)
       .then((resp) => resp.json())
       .then((vehicles) => {
         this.setVehicleState(vehicles)
-      })
+      }).catch((error) => {
+          console.log('vehicle api busted')
+        })
   }
 
   handleClickFaves() {
@@ -138,7 +156,7 @@ export default class App extends Component {
           <h2>SWAPI-Box</h2>
           <Button name='Favorites'
                   onClick={this.handleClickFaves.bind(this)}
-                  counter={Object.keys(this.state.favorites).length}/>
+                  counter={Object.keys(this.state.favorites).length} />
         </header>
         <section className='scroller-cards-holder'>
           <article className='scroller'>

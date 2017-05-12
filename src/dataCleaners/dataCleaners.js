@@ -11,21 +11,18 @@ export const peopleCleaner = (obj) => {
     if (!acc[person.name]) {
       acc[person.name] = {};
       acc[person.name].name = person.name;
-
       fetch(person.homeworld)
         .then(resp => resp.json())
-        .then(world => acc[person.name].homeworld = world.name)
-        .catch(() => 'error')
+        .then(world => {acc[person.name].homeworld = world.name
+        acc[person.name].population = world.population})
+        .catch((error) => console.log('peopleCleaner internal homeworld fetch breaking'))
 
-      fetch(person.homeworld)
-        .then(resp => resp.json())
-        .then(world => acc[person.name].population = world.population)
-        .catch(() => 'error')
-
-      fetch(person.species)
+        console.log('person.species = ', person.species);
+      let speciesURL = person.species
+      fetch(speciesURL)
         .then(resp => resp.json())
         .then(species => acc[person.name].species = species.name)
-        .catch(() => 'error')
+        .catch((error) => console.log('peopleCleaner internal species fetch breaking'))
     }
     return acc
   }, {})
@@ -44,11 +41,12 @@ export const planetCleaner = (obj) => {
         acc[planet.name].residents = 'no residents';
       } else {
         planet.residents.forEach((residentURL) => {
+          console.log('residentURL = ', residentURL);
           fetch(residentURL)
             .then(resp => resp.json())
             .then(resident => {
               acc[planet.name].residents.push(resident.name)})
-            .catch(() => 'error')
+            .catch((error) => console.log('planetCleaner internal fetch breaking'))
         })
       }
     }
