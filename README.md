@@ -1,6 +1,6 @@
 # SWAPI-Box
 
-In this project we built a React application that taps into the Star Wars API (SWAPI), and returns data on various characters, planets, and vehicles from the Star Wars univers. The app allows users to view data based on the above categories, as well as letting them favorite various cards. The app uses asynchronous JS api calls, and was intented to teach us how to implement this effectively with Promises and fetchMock via testing.
+In this project we built a React application that taps into the Star Wars API (SWAPI), and returns data on various characters, planets, and vehicles from the Star Wars universe. The app allows users to view data based on the above categories, as well as letting them favorite various cards. The app uses asynchronous JS api calls, and was intented to teach us how to implement this effectively with Promises and fetchMock via testing.
 
 ## Motivation
 
